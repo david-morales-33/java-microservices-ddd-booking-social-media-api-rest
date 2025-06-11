@@ -1,1 +1,1 @@
-# java-microservices-ddd-tattoo-social-media-api-rest
+# java-microservices-ddd-booking-social-media-api-rest
