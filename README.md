@@ -4,9 +4,8 @@
 [![Maven](https://img.shields.io/badge/Maven-3.9-blue.svg)](https://maven.apache.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
->Esta es una API REST para una red social que le permite a los clientes reservar citas con tatuadores o peluqueros. Desarrollada con java (Spring Boot), arquitectura de microservicios y Domain-Driven Design (DDD). Ideal como base para aplicaciones empresariales escalables y modulares.
+>Esta es una API REST para una red social que permite a los clientes reservar citas con tatuadores o peluqueros. Desarrollada con java (Spring Boot), arquitectura de microservicios y Domain-Driven Design (DDD).
 ---
-
 ## 🧭 Tabla de Contenidos
 
 - [🧱 Java Microservices DDD - Projects Manager API REST](#-java-microservices-ddd---projects-manager-api-rest)
