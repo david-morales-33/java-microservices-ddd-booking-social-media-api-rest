@@ -13,11 +13,13 @@
     <groupId>com.dmx</groupId>
     <artifactId>spring-microservices-booking-social-media</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <packaging>pom</packaging>
     <name>spring-microservices-booking-social-media</name>
 
     <modules>
         <module>microservice-gateway</module>
+        <module>microservice-eureka</module>
     </modules>
     <dependencies>
         <dependency>
