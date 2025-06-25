@@ -65,3 +65,29 @@ Al tener contratos claros (puertos) y comunicaciones definidas, podés exponer e
 - 🧪 Testing modular por contexto
 - 🐳 Integración con Docker y Docker Compose
 
+**Contextos**
+1. Identity & Access (IAM)
+Responsabilidad: Autenticación, autorización, gestión de usuarios.
+
+- Registro/login (tradicional o social).
+- Recuperación de contraseña.
+- Roles y permisos (barbero, cliente, admin).
+- Verificación de identidad.
+- Multi-Factor Authentication (MFA).
+
+2. User Profile
+Responsabilidad: Información pública y privada del usuario.
+
+- Datos personales, fotos, descripción.
+- Estado (disponible como lienzo, como profesional, etc.).
+- Preferencias y configuración del perfil.
+- Vinculación con redes sociales.
+
+3. Portfolio
+Responsabilidad: Gestión de trabajos realizados o de muestra por profesionales.
+
+- Crear catálogos de imágenes/videos.
+- Clasificación por categorías (barbería, tatuajes, estilos, etc.).
+- Tags (blackwork, fade, minimalismo).
+- Reacciones y comentarios en trabajos.
+
