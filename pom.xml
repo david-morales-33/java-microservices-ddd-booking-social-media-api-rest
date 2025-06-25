@@ -17,7 +17,7 @@
     <name>spring-microservices-booking-social-media</name>
 
     <modules>
-
+        <module>microservice-gateway</module>
     </modules>
     <dependencies>
         <dependency>
