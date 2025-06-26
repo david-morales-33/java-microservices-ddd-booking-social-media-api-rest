@@ -1,4 +1,4 @@
-package com.dmx.profile;
+package com.dmx.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

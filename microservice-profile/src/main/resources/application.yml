@@ -3,11 +3,11 @@ server:
 
 spring:
   application:
-    name: mscv-profile
+    name: msvc-profile
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:3306/management_booking_social_media
+    url: jdbc:postgresql://localhost:5432/management_booking_social_media
     username: admin
     password: *
   jpa:
