@@ -1,4 +1,4 @@
-package com.microservice.media.shared.domain.criteria;
+package com.dmx.profile.shared.domain.criteria;
 
 import java.util.Objects;
 import java.util.Optional;
