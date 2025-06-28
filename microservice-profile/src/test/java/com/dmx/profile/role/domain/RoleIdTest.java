@@ -1,6 +1,6 @@
 package com.dmx.profile.role.domain;
 
-import com.dmx.profile.shared.domain.UuidTest;
+import com.dmx.profile.shared.domain.UuidMother;
 
 public final class RoleIdTest {
 
@@ -9,6 +9,6 @@ public final class RoleIdTest {
     }
 
     public static RoleId random() {
-        return create(UuidTest.random());
+        return create(UuidMother.random());
     }
 }

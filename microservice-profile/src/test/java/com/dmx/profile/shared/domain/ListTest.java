@@ -17,7 +17,7 @@ public final class ListTest {
     }
 
     public static <T> List<T> random(Supplier<T> creator) {
-        return create(IntegerTest.random(), creator);
+        return create(IntegerMother.random(), creator);
     }
 
     public static <T> List<T> one(T element) {

@@ -1,9 +1,9 @@
 package com.dmx.profile.shared.domain.criteria;
 
-import com.dmx.profile.shared.domain.EnumTest;
+import com.dmx.profile.shared.domain.EnumMother;
 
 public final class FilterOperatorTest {
     public static FilterOperator random(){
-        return EnumTest.random(FilterOperator.class);
+        return EnumMother.random(FilterOperator.class);
     }
 }
