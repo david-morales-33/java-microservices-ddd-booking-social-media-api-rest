@@ -9,7 +9,7 @@ import com.dmx.profile.status.domain.StatusDTO;
 
 import java.util.Map;
 
-public class UserProfileDTO {
+public final class UserProfileDTO {
     private final String id;
     private final String name;
     private final String nickname;
