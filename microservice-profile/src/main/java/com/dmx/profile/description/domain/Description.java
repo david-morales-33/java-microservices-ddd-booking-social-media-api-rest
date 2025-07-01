@@ -46,15 +46,25 @@ public final class Description {
 
         HashMap<String, SkillDTO> skillList = new HashMap<>();
 
-        this.skillList.forEach((id, skill)->{
+        this.skillList.forEach((id, skill) -> {
             skillList.put(id, skill.toPrimitives());
         });
 
         return new DescriptionDTO(
-            this.id.value(),
+                this.id.value(),
                 this.content.value(),
                 skillList
         );
+    }
+
+    public void addSkill(Skill skill) {
+
+        assert skill.getId() != null;
+        this.skillList.put(skill.getId().value(), skill);
+    }
+
+    public void removeSkill(String key) {
+        this.skillList.remove(key);
     }
 
     public DescriptionId getId() {

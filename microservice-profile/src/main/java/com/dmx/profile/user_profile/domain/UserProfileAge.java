@@ -5,7 +5,7 @@ import com.dmx.profile.shared.domain.IntValueObject;
 public final class UserProfileAge extends IntValueObject {
     public UserProfileAge(Integer value) {
         super(value);
-        if (this.isPositive(value)) throw new AgeNotValidException("Age not valid");
+        if (!this.isPositive(value)) throw new AgeNotValidException("Age not valid");
 
     }
 

@@ -8,6 +8,6 @@ public final class UserProfileAgeMother {
     }
 
     public static UserProfileAge random() {
-        return new UserProfileAge(IntegerMother.random() * IntegerMother.random());
+        return new UserProfileAge((IntegerMother.random() * IntegerMother.random()));
     }
 }
