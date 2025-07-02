@@ -10,5 +10,5 @@ public interface UserProfileRepository {
 
     Optional<UserProfile> find(UserProfileId id);
 
-    List<UserProfile> searchByCriteria(Criteria criteria);
+    List<UserProfile>match(Criteria criteria);
 }
