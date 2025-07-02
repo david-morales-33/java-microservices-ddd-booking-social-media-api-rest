@@ -23,12 +23,9 @@ public final class UserProfileMother {
             UserProfileAge age,
             UserProfileGender gender,
             Status status,
-            Description description,
-            Map<String, Location> locationList,
-            Map<String, Contact> contactList,
-            Map<String, Role> roleList
+            Description description
     ) {
-        return new UserProfile(id, name, nickname, email, age, gender, status, description, locationList, contactList, roleList);
+        return UserProfile.create(id, name, nickname, email, age, gender, status, description);
     }
 
     public static UserProfile random() {

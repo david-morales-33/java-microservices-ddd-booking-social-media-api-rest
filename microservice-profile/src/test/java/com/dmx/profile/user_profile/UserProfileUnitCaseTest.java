@@ -38,7 +38,8 @@ public abstract class UserProfileUnitCaseTest extends UnitTestCase {
         when(repository.match(criteria)).thenReturn(new ArrayList<>());
     }
 
-    public void shouldVerifySaveUserProfile(UserProfile profile) {
+    public void shouldVerifySavedUserProfile(UserProfile profile) {
         verify(repository, atLeastOnce()).save(profile);
     }
+
 }
