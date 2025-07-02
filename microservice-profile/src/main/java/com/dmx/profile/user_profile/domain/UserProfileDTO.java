@@ -8,6 +8,7 @@ import com.dmx.profile.role.domain.RoleDTO;
 import com.dmx.profile.status.domain.StatusDTO;
 
 import java.util.Map;
+import java.util.Objects;
 
 public final class UserProfileDTO {
     private final String id;
@@ -198,5 +199,27 @@ public final class UserProfileDTO {
                 ", contactList=" + contactList +
                 ", roleList=" + roleList +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        UserProfileDTO that = (UserProfileDTO) o;
+        return id.equals(that.id) &&
+                name.equals(that.name) &&
+                nickname.equals(that.nickname) &&
+                email.equals(that.email) &&
+                age.equals(that.age) &&
+                gender.equals(that.gender) &&
+                status.equals(that.status) &&
+                description.equals(that.description) &&
+                locationList.equals(that.locationList) &&
+                contactList.equals(that.contactList) &&
+                roleList.equals(that.roleList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, nickname, email, age, gender, status, description, locationList, contactList, roleList);
     }
 }
