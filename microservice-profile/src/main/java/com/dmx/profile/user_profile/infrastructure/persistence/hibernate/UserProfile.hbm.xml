@@ -34,5 +34,17 @@
             <map-key column="ctc_id" type="string"/>
             <one-to-many class="com.dmx.profile.contact.domain.Contact"/>
         </map>
+
+        <map name="locationList">
+            <key column="usr_id"/>
+            <map-key column="lct_id" type="string"/>
+            <one-to-many class="com.dmx.profile.location.domain.Location"/>
+        </map>
+
+        <map name="roleList" table="tbl_user_x_role">
+            <key column="usr_id"/>
+            <map-key column="usr_x_rol" type="string"/>
+            <many-to-many class="com.dmx.profile.role.domain.Role" column="rol_id"/>
+        </map>
     </class>
 </hibernate-mapping>
