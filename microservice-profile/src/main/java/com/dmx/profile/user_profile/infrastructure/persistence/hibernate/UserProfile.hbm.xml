@@ -29,5 +29,10 @@
             <property name="value" column="usr_gender" type="string" access="field" length="20"/>
         </component>
 
+        <map name="contactList">
+            <key column="usr_id"/>
+            <map-key column="ctc_id" type="string"/>
+            <one-to-many class="com.dmx.profile.contact.domain.Contact"/>
+        </map>
     </class>
 </hibernate-mapping>
