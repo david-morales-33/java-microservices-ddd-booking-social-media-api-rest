@@ -6,7 +6,7 @@
 <hibernate-mapping>
     <class name="com.dmx.profile.user_profile.domain.UserProfile" table="tbl_user_profile">
         <composite-id name="id" class="com.dmx.profile.user_profile.domain.UserProfileId" access="field">
-            <key-property column="usr_id" name="value" length="36" access="field" />
+            <key-property column="usr_id" name="value" length="36" access="field"/>
         </composite-id>
 
         <component name="name" class="com.dmx.profile.user_profile.domain.UserProfileName" access="field">
@@ -46,5 +46,9 @@
             <map-key column="usr_x_rol" type="string"/>
             <many-to-many class="com.dmx.profile.role.domain.Role" column="rol_id"/>
         </map>
+
+        <many-to-one name="status" class="com.dmx.profile.status.domain.Status" column="sts_id" not-null="true"/>
+
+        <one-to-one name="description" class="com.dmx.profile.description.domain.Description" constrained="true"/>
     </class>
 </hibernate-mapping>

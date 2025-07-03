@@ -22,8 +22,8 @@ public final class UserProfile extends AggregateRoot {
     private final UserProfileEmail email;
     private final UserProfileAge age;
     private final UserProfileGender gender;
-    private final Status status;
-    private final Description description;
+    private Status status;
+    private Description description;
     private Map<String, Location> locationList;
     private Map<String, Contact> contactList;
     private Map<String, Role> roleList;
@@ -145,7 +145,7 @@ public final class UserProfile extends AggregateRoot {
 
     public void addRole(Map<String, Role> roles) {
         roles.forEach((key, role) -> {
-            if (this.roleExists(key)) throw new  RoleAlreadyExistException("Role not valid");
+            if (this.roleExists(key)) throw new RoleAlreadyExistException("Role not valid");
             this.roleList.put(key, role);
         });
     }
@@ -214,20 +214,28 @@ public final class UserProfile extends AggregateRoot {
         return locationList;
     }
 
-    public void setLocationList(Map<String, Location> locationList) {
-        this.locationList = locationList;
-    }
-
     public Map<String, Contact> getContactList() {
         return contactList;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public void setDescription(Description description) {
+        this.description = description;
+    }
+
+    public Map<String, Role> getRoleList() {
+        return roleList;
     }
 
     public void setContactList(Map<String, Contact> contactList) {
         this.contactList = contactList;
     }
 
-    public Map<String, Role> getRoleList() {
-        return roleList;
+    public void setLocationList(Map<String, Location> locationList) {
+        this.locationList = locationList;
     }
 
     public void setRoleList(Map<String, Role> roleList) {
