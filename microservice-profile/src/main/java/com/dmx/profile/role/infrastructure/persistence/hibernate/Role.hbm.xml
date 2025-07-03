@@ -6,11 +6,11 @@
 <hibernate-mapping>
     <class name="com.dmx.profile.role.domain.Role" table="tbl_role">
         <composite-id name="id" class="com.dmx.profile.role.domain.RoleId" access="field">
-            <key-property column="id" name="value" length="36" access="field" />
+            <key-property column="rol_id" name="value" length="36" access="field" />
         </composite-id>
 
         <component name="name" class="com.dmx.profile.role.domain.RoleName" access="field">
-            <property name="value" column="name" type="string" access="field" />
+            <property name="value" column="rol_name" type="string" access="field" />
         </component>
     </class>
 </hibernate-mapping>
