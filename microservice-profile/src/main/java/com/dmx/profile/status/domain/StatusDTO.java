@@ -1,4 +1,6 @@
 package com.dmx.profile.status.domain;
 
-public record StatusDTO(String id, String label) {
+import java.io.Serializable;
+
+public record StatusDTO(String id, String label) implements Serializable {
 }

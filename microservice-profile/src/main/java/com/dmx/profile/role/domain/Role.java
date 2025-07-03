@@ -2,7 +2,7 @@ package com.dmx.profile.role.domain;
 
 import java.util.Objects;
 
-public class Role {
+public final class Role {
     private final RoleId id;
     private final RoleName name;
 

@@ -1,3 +1,6 @@
 package com.dmx.profile.role.domain;
 
-public record RoleDTO (String id, String name){ }
+import java.io.Serializable;
+
+public record RoleDTO(String id, String name) implements Serializable {
+}

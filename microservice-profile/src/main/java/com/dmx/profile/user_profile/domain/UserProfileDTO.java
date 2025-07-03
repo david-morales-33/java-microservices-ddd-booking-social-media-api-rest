@@ -7,10 +7,11 @@ import com.dmx.profile.location.domain.LocationDTO;
 import com.dmx.profile.role.domain.RoleDTO;
 import com.dmx.profile.status.domain.StatusDTO;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.Objects;
 
-public final class UserProfileDTO {
+public final class UserProfileDTO implements Serializable {
     private final String id;
     private final String name;
     private final String nickname;

@@ -1,4 +1,6 @@
 package com.dmx.profile.contact.domain;
 
-public record ContactDTO(String id, String content) {
+import java.io.Serializable;
+
+public record ContactDTO(String id, String content) implements Serializable {
 }

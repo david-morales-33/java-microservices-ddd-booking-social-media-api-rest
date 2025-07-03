@@ -1,4 +1,6 @@
 package com.dmx.profile.skill.domain;
 
-public record SkillDTO(String id, String label) {
+import java.io.Serializable;
+
+public record SkillDTO(String id, String label) implements Serializable {
 }
