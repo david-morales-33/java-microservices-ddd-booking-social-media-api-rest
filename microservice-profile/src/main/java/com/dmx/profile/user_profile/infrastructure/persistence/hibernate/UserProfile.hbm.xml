@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.dmx.profile.user_profile.domain.UserProfile" table="tbl_user_profile ">
+    <class name="com.dmx.profile.user_profile.domain.UserProfile" table="tbl_user_profile">
         <composite-id name="id" class="com.dmx.profile.user_profile.domain.UserProfileId" access="field">
             <key-property column="usr_id" name="value" length="36" access="field" />
         </composite-id>
