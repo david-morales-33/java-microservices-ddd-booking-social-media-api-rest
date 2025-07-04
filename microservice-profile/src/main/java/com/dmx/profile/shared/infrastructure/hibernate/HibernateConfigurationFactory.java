@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class HibernateConfigurationFactory {
+public final class HibernateConfigurationFactory {
     private final ResourcePatternResolver resourceResolver;
 
     public HibernateConfigurationFactory(ResourcePatternResolver resourceResolver) {
