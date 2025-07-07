@@ -1,5 +1,6 @@
 package com.dmx.profile.shared.infrastructure.hibernate;
 
+import com.dmx.profile.shared.domain.Service;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.hibernate.cfg.AvailableSettings;
 import org.springframework.core.io.FileSystemResource;
@@ -12,9 +13,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Service
 public final class HibernateConfigurationFactory {
     private final ResourcePatternResolver resourceResolver;
 
@@ -60,6 +63,15 @@ public final class HibernateConfigurationFactory {
         );
         dataSource.setUsername(username);
         dataSource.setPassword(password);
+
+        Resource mysqlResource = resourceResolver.getResource(String.format(
+                "classpath:database/%s.sql",
+                databaseName
+        ));
+        String mysqlSentences = new Scanner(mysqlResource.getInputStream(), StandardCharsets.UTF_8).useDelimiter("\\A").next();
+
+        dataSource.setConnectionInitSqls(new ArrayList<>(Arrays.asList(mysqlSentences.split(";"))));
+
         return dataSource;
     }
 
