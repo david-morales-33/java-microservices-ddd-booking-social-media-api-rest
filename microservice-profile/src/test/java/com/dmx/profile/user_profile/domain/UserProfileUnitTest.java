@@ -73,8 +73,8 @@ public final class UserProfileUnitTest {
         userProfile.addSkills(skillList);
 
         //THEN
-        assertEquals(skill1, userProfile.getDescription().getSkillList().get(skill1.getId().value()));
-        assertEquals(skill2, userProfile.getDescription().getSkillList().get(skill2.getId().value()));
+        assertEquals(skill1, userProfile.getSkillList().get(skill1.getId().value()));
+        assertEquals(skill2, userProfile.getSkillList().get(skill2.getId().value()));
     }
 
     @Test
@@ -98,8 +98,8 @@ public final class UserProfileUnitTest {
         userProfile.addSkills(skillList2);
 
         //THEN
-        assertNull(userProfile.getDescription().getSkillList().get(skill1.getId().value()));
-        assertEquals(skill2, userProfile.getDescription().getSkillList().get(skill2.getId().value()));
+        assertNull(userProfile.getSkillList().get(skill1.getId().value()));
+        assertEquals(skill2, userProfile.getSkillList().get(skill2.getId().value()));
 
     }
 

@@ -29,13 +29,23 @@
             <property name="value" column="usr_gender" type="string" access="field" length="20"/>
         </component>
 
-        <map name="contactList">
+        <component name="description" class="com.dmx.profile.user_profile.domain.UserProfileDescription" access="field">
+            <property name="value" column="usr_description" type="text" access="field" length="500"/>
+        </component>
+
+        <map name="skillList" cascade="persist">
+            <key column="usr_id"/>
+            <map-key column="skl_id" type="string"/>
+            <one-to-many class="com.dmx.profile.skill.domain.Skill"/>
+        </map>
+
+        <map name="contactList" cascade="persist">
             <key column="usr_id"/>
             <map-key column="ctc_id" type="string"/>
             <one-to-many class="com.dmx.profile.contact.domain.Contact"/>
         </map>
 
-        <map name="locationList">
+        <map name="locationList" cascade="persist">
             <key column="usr_id"/>
             <map-key column="lct_id" type="string"/>
             <one-to-many class="com.dmx.profile.location.domain.Location"/>
@@ -49,6 +59,6 @@
 
         <many-to-one name="status" class="com.dmx.profile.status.domain.Status" column="sts_id" not-null="true"/>
 
-        <one-to-one name="description" class="com.dmx.profile.description.domain.Description" constrained="true"/>
+        <many-to-one name="photo" class="com.dmx.profile.photo.domain.Photo" column="pht_id" cascade="persist"/>
     </class>
 </hibernate-mapping>

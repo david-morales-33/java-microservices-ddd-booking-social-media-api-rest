@@ -1,10 +1,10 @@
 package com.dmx.profile.user_profile.domain;
 
-
 import com.dmx.profile.contact.domain.ContactDTO;
-import com.dmx.profile.description.domain.DescriptionDTO;
 import com.dmx.profile.location.domain.LocationDTO;
+import com.dmx.profile.photo.domain.PhotoDTO;
 import com.dmx.profile.role.domain.RoleDTO;
+import com.dmx.profile.skill.domain.SkillDTO;
 import com.dmx.profile.status.domain.StatusDTO;
 
 import java.io.Serializable;
@@ -18,8 +18,10 @@ public final class UserProfileDTO implements Serializable {
     private final String email;
     private final Integer age;
     private final String gender;
+    private final String description;
+    private final PhotoDTO photo;
     private final StatusDTO status;
-    private final DescriptionDTO description;
+    private final Map<String, SkillDTO> skillList;
     private final Map<String, LocationDTO> locationList;
     private final Map<String, ContactDTO> contactList;
     private final Map<String, RoleDTO> roleList;
@@ -31,8 +33,10 @@ public final class UserProfileDTO implements Serializable {
             String email,
             Integer age,
             String gender,
+            String description,
+            PhotoDTO photo,
             StatusDTO status,
-            DescriptionDTO description,
+            Map<String, SkillDTO> skillList,
             Map<String, LocationDTO> locationList,
             Map<String, ContactDTO> contactList,
             Map<String, RoleDTO> roleLis
@@ -43,8 +47,10 @@ public final class UserProfileDTO implements Serializable {
         this.email = email;
         this.age = age;
         this.gender = gender;
-        this.status = status;
         this.description = description;
+        this.photo = photo;
+        this.status = status;
+        this.skillList = skillList;
         this.locationList = locationList;
         this.contactList = contactList;
         this.roleList = roleLis;
@@ -57,8 +63,10 @@ public final class UserProfileDTO implements Serializable {
         this.email = builder.email;
         this.age = builder.age;
         this.gender = builder.gender;
-        this.status = builder.status;
         this.description = builder.description;
+        this.photo = builder.photo;
+        this.status = builder.status;
+        this.skillList = builder.skillList;
         this.locationList = builder.locationList;
         this.contactList = builder.contactList;
         this.roleList = builder.roleList;
@@ -71,8 +79,10 @@ public final class UserProfileDTO implements Serializable {
         private String email;
         private Integer age;
         private String gender;
+        private String description;
+        private PhotoDTO photo;
         private StatusDTO status;
-        private DescriptionDTO description;
+        private Map<String, SkillDTO> skillList;
         private Map<String, LocationDTO> locationList;
         private Map<String, ContactDTO> contactList;
         private Map<String, RoleDTO> roleList;
@@ -107,12 +117,17 @@ public final class UserProfileDTO implements Serializable {
             return this;
         }
 
+        public Builder photho(PhotoDTO photo) {
+            this.photo = photo;
+            return this;
+        }
+
         public Builder status(StatusDTO status) {
             this.status = status;
             return this;
         }
 
-        public Builder description(DescriptionDTO description) {
+        public Builder description(String description) {
             this.description = description;
             return this;
         }
@@ -129,6 +144,11 @@ public final class UserProfileDTO implements Serializable {
 
         public Builder roleList(Map<String, RoleDTO> roleList) {
             this.roleList = roleList;
+            return this;
+        }
+
+        public Builder skillList(Map<String, SkillDTO> skillList) {
+            this.skillList = skillList;
             return this;
         }
 
@@ -165,12 +185,20 @@ public final class UserProfileDTO implements Serializable {
         return gender;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public PhotoDTO getPhoto() {
+        return photo;
+    }
+
     public StatusDTO getStatus() {
         return status;
     }
 
-    public DescriptionDTO getDescription() {
-        return description;
+    public Map<String, SkillDTO> getSkillList() {
+        return skillList;
     }
 
     public Map<String, LocationDTO> getLocationList() {
@@ -186,23 +214,6 @@ public final class UserProfileDTO implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "UserProfileDTO{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", email='" + email + '\'' +
-                ", age=" + age +
-                ", gender='" + gender + '\'' +
-                ", status=" + status +
-                ", description=" + description +
-                ", locationList=" + locationList +
-                ", contactList=" + contactList +
-                ", roleList=" + roleList +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         UserProfileDTO that = (UserProfileDTO) o;
@@ -212,8 +223,10 @@ public final class UserProfileDTO implements Serializable {
                 email.equals(that.email) &&
                 age.equals(that.age) &&
                 gender.equals(that.gender) &&
-                status.equals(that.status) &&
                 description.equals(that.description) &&
+                photo.equals(that.photo) &&
+                status.equals(that.status) &&
+                skillList.equals(that.skillList) &&
                 locationList.equals(that.locationList) &&
                 contactList.equals(that.contactList) &&
                 roleList.equals(that.roleList);
@@ -221,6 +234,25 @@ public final class UserProfileDTO implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, nickname, email, age, gender, status, description, locationList, contactList, roleList);
+        return Objects.hash(id, name, nickname, email, age, gender, description, photo, status, skillList, locationList, contactList, roleList);
+    }
+
+    @Override
+    public String toString() {
+        return "UserProfileDTO{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                ", description='" + description + '\'' +
+                ", photo=" + photo +
+                ", status=" + status +
+                ", skillList=" + skillList +
+                ", locationList=" + locationList +
+                ", contactList=" + contactList +
+                ", roleList=" + roleList +
+                '}';
     }
 }

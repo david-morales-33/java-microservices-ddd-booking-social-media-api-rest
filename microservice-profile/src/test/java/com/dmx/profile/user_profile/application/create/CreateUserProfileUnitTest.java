@@ -1,7 +1,8 @@
 package com.dmx.profile.user_profile.application.create;
 
-import com.dmx.profile.description.domain.*;
-import com.dmx.profile.status.domain.Status;
+import com.dmx.profile.photo.domain.PhotoIdMother;
+import com.dmx.profile.photo.domain.PhotoMother;
+import com.dmx.profile.photo.domain.PhotoUrlMother;
 import com.dmx.profile.status.domain.StatusIdMother;
 import com.dmx.profile.status.domain.StatusLabelMother;
 import com.dmx.profile.status.domain.StatusMother;
@@ -37,8 +38,9 @@ public final class CreateUserProfileUnitTest extends UserProfileUnitCaseTest {
                 UserProfileEmailMother.random(),
                 UserProfileAgeMother.random(),
                 UserProfileGenderMother.random(),
-                StatusMother.random(),
-                new Description(DescriptionIdMother.random(), DescriptionContentMother.random(), new HashMap<>())
+                UserProfileDescriptionMother.random(),
+                PhotoMother.random(),
+                StatusMother.random()
         );
         UserProfile profile = UserProfileMother.create(
                 UserProfileIdMother.create(command.getId()),
@@ -47,12 +49,9 @@ public final class CreateUserProfileUnitTest extends UserProfileUnitCaseTest {
                 UserProfileEmailMother.create(command.getEmail()),
                 UserProfileAgeMother.create(command.getAge()),
                 UserProfileGenderMother.create(command.getGender()),
-                StatusMother.create(StatusIdMother.create(command.getStatus().id()), StatusLabelMother.create(command.getStatus().label())),
-                DescriptionMother.create(
-                        DescriptionIdMother.create(command.getDescription().id()),
-                        DescriptionContentMother.create(command.getDescription().content()),
-                        new HashMap<>()
-                )
+                UserProfileDescriptionMother.create(command.getDescription()),
+                PhotoMother.create(PhotoIdMother.create(command.getPhoto().id()), PhotoUrlMother.create(command.getPhoto().url())),
+                StatusMother.create(StatusIdMother.create(command.getStatus().id()), StatusLabelMother.create(command.getStatus().label()))
         );
 
         //WHEN
@@ -75,8 +74,9 @@ public final class CreateUserProfileUnitTest extends UserProfileUnitCaseTest {
                 profile.getEmail(),
                 profile.getAge(),
                 profile.getGender(),
-                profile.getStatus(),
-                profile.getDescription()
+                profile.getDescription(),
+                profile.getPhoto(),
+                profile.getStatus()
         );
         //WHEN
         shouldAnswerAnyUserProfile(profile);

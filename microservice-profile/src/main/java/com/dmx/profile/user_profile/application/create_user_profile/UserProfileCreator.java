@@ -1,6 +1,6 @@
 package com.dmx.profile.user_profile.application.create_user_profile;
 
-import com.dmx.profile.description.domain.Description;
+import com.dmx.profile.photo.domain.Photo;
 import com.dmx.profile.shared.domain.Service;
 import com.dmx.profile.status.domain.Status;
 import com.dmx.profile.user_profile.domain.*;
@@ -22,10 +22,11 @@ public final class UserProfileCreator {
             UserProfileEmail email,
             UserProfileAge age,
             UserProfileGender gender,
-            Status status,
-            Description description
+            UserProfileDescription description,
+            Photo photo,
+            Status status
     ) throws UserProfileAlreadyExistsException {
-        UserProfile profile = UserProfile.create(id, name, nickname, email, age, gender, status, description);
+        UserProfile profile = UserProfile.create(id, name, nickname, email, age, gender, description, photo, status);
         Optional<UserProfile> response = this.repository.find(id);
 
         if (response.isPresent()) throw new UserProfileAlreadyExistsException("User already exists");

@@ -1,6 +1,6 @@
 package com.dmx.profile.user_profile.application.create_user_profile;
 
-import com.dmx.profile.description.domain.Description;
+import com.dmx.profile.photo.domain.Photo;
 import com.dmx.profile.shared.domain.Service;
 import com.dmx.profile.shared.domain.bus.command.CommandHandler;
 import com.dmx.profile.status.domain.Status;
@@ -24,9 +24,10 @@ public final class CreateUserProfileCommandHandler implements CommandHandler<Cre
         UserProfileAge age = new UserProfileAge(command.getAge());
         UserProfileEmail email = new UserProfileEmail(command.getEmail());
         UserProfileGender gender = new UserProfileGender(command.getGender());
-        Description description = Description.fromPrimitives(command.getDescription());
+        UserProfileDescription description = new UserProfileDescription(command.getDescription());
         Status status = Status.fromPrimitives(command.getStatus());
+        Photo photo = Photo.fromPrimitives(command.getPhoto());
 
-        this.creator.execute(id, name, nickname, email, age, gender, status, description);
+        this.creator.execute(id, name, nickname, email, age, gender,description,photo, status);
     }
 }
