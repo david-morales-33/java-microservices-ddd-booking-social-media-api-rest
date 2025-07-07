@@ -14,9 +14,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional("")
+@Transactional("profile-transaction_manager")
 public class PostgreSQLUserProfileRepository extends HibernateRepository<UserProfile> implements UserProfileRepository {
-    public PostgreSQLUserProfileRepository(@Qualifier("") SessionFactory sessionFactory) {
+    public PostgreSQLUserProfileRepository(@Qualifier("profile-session_factory") SessionFactory sessionFactory) {
         super(sessionFactory, UserProfile.class);
     }
 
