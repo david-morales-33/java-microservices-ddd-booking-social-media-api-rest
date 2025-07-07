@@ -1,20 +1,8 @@
 server:
   port: 8090
-
 spring:
   application:
     name: msvc-profile
-
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/management_booking_social_media
-    username: admin
-    password: s
-  jpa:
-    hibernate:
-      ddl-auto: create
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
   config:
     import: optional:configserver:http://localhost:8888
 eureka:
