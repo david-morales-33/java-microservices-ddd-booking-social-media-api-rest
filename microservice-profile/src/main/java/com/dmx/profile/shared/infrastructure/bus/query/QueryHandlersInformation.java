@@ -14,7 +14,7 @@ public final class QueryHandlersInformation {
     HashMap<Class<? extends Query>, Class<? extends QueryHandler>> indexedQueryHandlers;
 
     public QueryHandlersInformation() {
-        Reflections reflections = new Reflections("com.microservice.media");
+        Reflections reflections = new Reflections("com.dmx.profile");
         Set<Class<? extends QueryHandler>> classes = reflections.getSubTypesOf(QueryHandler.class);
 
         indexedQueryHandlers = formatHandlers(classes);
