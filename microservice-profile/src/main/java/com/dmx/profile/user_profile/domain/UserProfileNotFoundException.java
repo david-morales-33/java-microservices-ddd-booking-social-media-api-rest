@@ -1,7 +1,9 @@
 package com.dmx.profile.user_profile.domain;
 
-public class UserProfileNotFoundException extends RuntimeException {
-    public UserProfileNotFoundException(String message) {
-        super(message);
+import com.dmx.profile.shared.domain.DomainError;
+
+public class UserProfileNotFoundException extends DomainError {
+    public UserProfileNotFoundException(UserProfileId id) {
+        super("USER_PROFILE_NOT_EXISTS", String.format("The user profile <%s> doesn't exist", id.value()));
     }
 }

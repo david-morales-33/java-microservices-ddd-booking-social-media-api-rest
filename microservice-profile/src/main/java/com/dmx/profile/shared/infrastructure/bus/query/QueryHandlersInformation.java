@@ -3,6 +3,7 @@ package com.dmx.profile.shared.infrastructure.bus.query;
 import com.dmx.profile.shared.domain.Service;
 import com.dmx.profile.shared.domain.bus.query.Query;
 import com.dmx.profile.shared.domain.bus.query.QueryHandler;
+import com.dmx.profile.shared.domain.bus.query.QueryNotRegisteredException;
 import org.reflections.Reflections;
 
 import java.lang.reflect.ParameterizedType;
@@ -20,11 +21,11 @@ public final class QueryHandlersInformation {
         indexedQueryHandlers = formatHandlers(classes);
     }
 
-    public Class<? extends QueryHandler> search(Class<? extends Query> queryClass) throws QueryNotRegisteredError {
+    public Class<? extends QueryHandler> search(Class<? extends Query> queryClass) throws QueryNotRegisteredException {
         Class<? extends QueryHandler> queryHandlerClass = indexedQueryHandlers.get(queryClass);
 
         if (null == queryHandlerClass) {
-            throw new QueryNotRegisteredError(queryClass);
+            throw new QueryNotRegisteredException(queryClass);
         }
 
         return queryHandlerClass;

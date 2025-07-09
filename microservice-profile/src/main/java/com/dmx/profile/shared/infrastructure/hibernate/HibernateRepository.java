@@ -1,6 +1,7 @@
 package com.dmx.profile.shared.infrastructure.hibernate;
 
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.transaction.Transactional;
 import org.hibernate.SessionFactory;
 import com.dmx.profile.shared.domain.Identifier;
 import com.dmx.profile.shared.domain.criteria.Criteria;
@@ -20,7 +21,7 @@ public abstract class HibernateRepository<T> {
     }
 
     protected void persist(T entity) {
-        sessionFactory.getCurrentSession().saveOrUpdate(entity);
+        sessionFactory.getCurrentSession().persist(entity);
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().clear();
     }

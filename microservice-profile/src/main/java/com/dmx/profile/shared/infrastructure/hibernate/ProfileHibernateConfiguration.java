@@ -16,7 +16,6 @@ import java.io.IOException;
 public class ProfileHibernateConfiguration {
     private final HibernateConfigurationFactory factory;
     private final Parameter                     config;
-    private final String                        CONTEXT_NAME = "profile";
 
     public ProfileHibernateConfiguration(HibernateConfigurationFactory factory, Parameter config) {
         this.factory = factory;
@@ -30,7 +29,7 @@ public class ProfileHibernateConfiguration {
 
     @Bean("profile-session_factory")
     public LocalSessionFactoryBean sessionFactory() throws IOException, ParameterNotExist {
-        return factory.sessionFactory(CONTEXT_NAME, dataSource());
+        return factory.sessionFactory(dataSource());
     }
 
     @Bean("profile-data_source")

@@ -18,7 +18,7 @@ public final class UserProfileFinder {
 
     public UserProfileResponse execute(UserProfileId id) {
         Optional<UserProfile> response = this.repository.find(id);
-        if (response.isEmpty()) throw new UserProfileNotFoundException("User not found");
+        if (response.isEmpty()) throw new UserProfileNotFoundException(id);
         return new UserProfileResponse(response.get().toPrimitives());
     }
 }

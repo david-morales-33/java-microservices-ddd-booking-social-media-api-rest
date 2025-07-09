@@ -32,7 +32,7 @@ public final class HibernateConfigurationFactory {
         return transactionManager;
     }
 
-    public LocalSessionFactoryBean sessionFactory(String contextName, DataSource dataSource) {
+    public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setHibernateProperties(hibernateProperties());
