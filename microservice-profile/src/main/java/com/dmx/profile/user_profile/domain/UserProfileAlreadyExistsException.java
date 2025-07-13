@@ -1,7 +1,9 @@
 package com.dmx.profile.user_profile.domain;
 
-public class UserProfileAlreadyExistsException extends RuntimeException {
-    public UserProfileAlreadyExistsException(String message) {
-        super(message);
+import com.dmx.profile.shared.domain.DomainError;
+
+public class UserProfileAlreadyExistsException extends DomainError {
+    public UserProfileAlreadyExistsException(UserProfileId id) {
+        super("USER_PROFILE_ALREADY_EXIST", String.format("The user profile <%s> already exist", id.value()));
     }
 }

@@ -29,7 +29,7 @@ public final class UserProfileCreator {
         UserProfile profile = UserProfile.create(id, name, nickname, email, age, gender, description, photo, status);
         Optional<UserProfile> response = this.repository.find(id);
 
-        if (response.isPresent()) throw new UserProfileAlreadyExistsException("User already exists");
+        if (response.isPresent()) throw new UserProfileAlreadyExistsException(id);
 
         this.repository.save(profile);
     }
