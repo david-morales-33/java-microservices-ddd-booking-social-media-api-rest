@@ -22,6 +22,7 @@
         <module>microservice-eureka</module>
         <module>microservice-config</module>
         <module>microservice-profile</module>
+        <module>microservice-social-graph</module>
     </modules>
     <dependencies>
         <dependency>

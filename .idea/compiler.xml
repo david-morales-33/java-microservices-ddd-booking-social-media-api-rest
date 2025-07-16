@@ -10,6 +10,7 @@
         <module name="microservice-profile" />
         <module name="microservice-eureka" />
         <module name="microservice-config" />
+        <module name="microservice-social-graph" />
       </profile>
     </annotationProcessing>
   </component>
@@ -19,6 +20,7 @@
       <module name="microservice-eureka" options="-parameters" />
       <module name="microservice-gateway" options="-parameters" />
       <module name="microservice-profile" options="-parameters" />
+      <module name="microservice-social-graph" options="-parameters" />
     </option>
   </component>
 </project>
