@@ -84,7 +84,7 @@ Responsabilidad: Información pública y privada del usuario.
 - Vinculación con redes sociales.
 
 3. Portfolio
-Responsabilidad: Gestión de trabajos realizados o de muestra por profesionales.
+Responsabilidad: Gestión de trabajos realizados por profecionales.
 
 - Crear catálogos de imágenes/videos.
 - Clasificación por categorías (barbería, tatuajes, estilos, etc.).
