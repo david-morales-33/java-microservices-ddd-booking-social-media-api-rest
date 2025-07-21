@@ -1,4 +1,5 @@
 /microservice-profile/src/main/java/com/dmx/server/Test.java
 /microservice-profile/src/main/resources/.env
+/microservice-social-graph/src/main/resources/.env
 /microservice-profile/src/main/resources/application.yml
 /microservice-profile/src/main/java/com/dmx/server/controllers/TestController.java
