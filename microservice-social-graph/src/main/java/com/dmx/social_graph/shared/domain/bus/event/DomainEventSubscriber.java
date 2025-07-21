@@ -1,4 +1,5 @@
-package com.dmx.profile.shared.domain.bus.event;
+package com.dmx.social_graph.shared.domain.bus.event;
+
 
 import java.lang.annotation.*;
 

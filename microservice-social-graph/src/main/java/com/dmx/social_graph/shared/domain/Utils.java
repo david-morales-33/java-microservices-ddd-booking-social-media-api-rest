@@ -1,4 +1,4 @@
-package com.dmx.profile.shared.domain;
+package com.dmx.social_graph.shared.domain;
 
 // import java.sql.Timestamp;
 // import java.time.LocalDateTime;
