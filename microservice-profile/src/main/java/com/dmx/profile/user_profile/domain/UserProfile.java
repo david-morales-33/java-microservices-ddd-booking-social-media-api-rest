@@ -5,6 +5,7 @@ import com.dmx.profile.contact.domain.ContactDTO;
 import com.dmx.profile.location.domain.Location;
 import com.dmx.profile.location.domain.LocationDTO;
 import com.dmx.profile.photo.domain.Photo;
+import com.dmx.profile.photo.domain.PhotoDTO;
 import com.dmx.profile.role.domain.Role;
 import com.dmx.profile.role.domain.RoleDTO;
 import com.dmx.profile.shared.domain.AggregateRoot;
@@ -15,6 +16,7 @@ import com.dmx.profile.status.domain.Status;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 public final class UserProfile extends AggregateRoot {
     private final UserProfileId id;
@@ -96,7 +98,7 @@ public final class UserProfile extends AggregateRoot {
                 new UserProfileAge(userProfile.getAge()),
                 new UserProfileGender(userProfile.getGender()),
                 new UserProfileDescription(userProfile.getDescription()),
-                Photo.fromPrimitives(userProfile.getPhoto()),
+                userProfile.getPhoto() == null ? null : Photo.fromPrimitives(userProfile.getPhoto()),
                 Status.fromPrimitives(userProfile.getStatus()),
                 skillList,
                 locationList,
@@ -124,7 +126,7 @@ public final class UserProfile extends AggregateRoot {
                 this.age.value(),
                 this.gender.value(),
                 this.description.value(),
-                this.photo.toPrimitives(),
+                this.photo == null ? new PhotoDTO(UUID.randomUUID().toString(), "Not file") : this.photo.toPrimitives(),
                 this.status.toPrimitives(),
                 skillList,
                 locationList,
