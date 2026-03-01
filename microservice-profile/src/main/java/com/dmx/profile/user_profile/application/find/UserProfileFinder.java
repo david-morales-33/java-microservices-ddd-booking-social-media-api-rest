@@ -7,15 +7,17 @@ import com.dmx.profile.user_profile.domain.UserProfileNotFoundException;
 import com.dmx.profile.user_profile.domain.UserProfileRepository;
 
 import java.util.Optional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public final class UserProfileFinder {
+public class UserProfileFinder {
     private final UserProfileRepository repository;
 
     public UserProfileFinder(UserProfileRepository repository) {
         this.repository = repository;
     }
 
+    @Transactional("profile-transaction_manager")
     public UserProfileResponse execute(UserProfileId id) {
         Optional<UserProfile> response = this.repository.find(id);
         if (response.isEmpty()) throw new UserProfileNotFoundException(id);
