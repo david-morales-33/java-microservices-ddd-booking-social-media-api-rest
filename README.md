@@ -90,4 +90,3 @@ Responsabilidad: Gestión de trabajos realizados por profecionales.
 - Clasificación por categorías (barbería, tatuajes, estilos, etc.).
 - Tags (blackwork, fade, minimalismo).
 - Reacciones y comentarios en trabajos.
-
