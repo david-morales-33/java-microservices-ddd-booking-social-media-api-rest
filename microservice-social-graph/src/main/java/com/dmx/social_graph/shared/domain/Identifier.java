@@ -20,6 +20,10 @@ public abstract class Identifier implements Serializable {
         return value;
     }
 
+    public static String generate(){
+        return UUID.randomUUID().toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
