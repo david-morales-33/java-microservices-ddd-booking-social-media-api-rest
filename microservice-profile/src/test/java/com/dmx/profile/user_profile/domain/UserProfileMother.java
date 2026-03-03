@@ -2,7 +2,6 @@ package com.dmx.profile.user_profile.domain;
 
 import com.dmx.profile.contact.domain.Contact;
 import com.dmx.profile.contact.domain.ContactMother;
-import com.dmx.profile.description.domain.Description;
 import com.dmx.profile.location.domain.Location;
 import com.dmx.profile.location.domain.LocationMother;
 import com.dmx.profile.photo.domain.Photo;

@@ -1,6 +1,6 @@
 package com.dmx.social_graph.shared.domain;
 
-import com.dmx.profile.shared.domain.bus.event.DomainEvent;
+import com.dmx.social_graph.shared.domain.bus.event.DomainEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;

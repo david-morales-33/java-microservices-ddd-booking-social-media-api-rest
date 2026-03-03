@@ -55,7 +55,7 @@ public class Follow {
         this.updatedAt = FollowInstant.now();
     }
 
-    public void mute() {
+    public void markAsMute() {
         this.muted = FollowMuted.of(true);
         this.updatedAt = FollowInstant.now();
     }
