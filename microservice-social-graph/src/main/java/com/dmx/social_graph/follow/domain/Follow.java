@@ -3,7 +3,6 @@ package com.dmx.social_graph.follow.domain;
 import java.util.Objects;
 
 public class Follow {
-
     private final FollowId id;
     private final UserId userId;
     private final UserId followerId;
@@ -12,7 +11,6 @@ public class Follow {
     private FollowInstant updatedAt;
     private FollowFavorite favorite;
     private FollowMuted muted;
-
 
     public Follow(FollowId id, UserId userId, UserId followerId) {
         if (userId.equals(followerId)) {
@@ -25,8 +23,29 @@ public class Follow {
         this.updatedAt = FollowInstant.now();
     }
 
+    public Follow(FollowId id, UserId userId, UserId followerId, FollowStatus status, FollowFavorite favorite, FollowMuted muted) {
+        if (userId.equals(followerId)) {
+            throw new UserFollowThemselvesExecption(followerId);
+        }
+        this.id = id;
+        this.followerId = followerId;
+        this.userId = userId;
+        this.createdAt = FollowInstant.now();
+        this.updatedAt = FollowInstant.now();
+        this.status = status;
+        this.favorite = favorite;
+        this.muted = muted;
+    }
+
     public static Follow create(UserId userId, UserId followerId) {
-        return new Follow(new FollowId(FollowId.generate()), userId, followerId);
+        return new Follow(
+                new FollowId(FollowId.generate()),
+                userId,
+                followerId,
+                FollowStatus.ACTIVE,
+                FollowFavorite.of(false),
+                FollowMuted.of(false)
+        );
     }
 
     public void unfollow() {
@@ -102,13 +121,37 @@ public class Follow {
         return muted;
     }
 
+    public FollowDTO toPrimitives() {
+        return new FollowDTO(
+                this.id.value(),
+                this.userId.value(),
+                this.followerId.value(),
+                this.status.value(),
+                FollowInstant.dateToString(java.time.LocalDateTime.now()),
+                FollowInstant.dateToString(java.time.LocalDateTime.now()),
+                this.favorite.value(),
+                this.muted.value()
+        );
+    }
+
+    public static Follow fromPrimitives(FollowDTO dto) {
+        Follow follow = new Follow(
+                new FollowId(dto.id()),
+                new UserId(dto.userId()),
+                new UserId(dto.followerId()),
+                FollowStatus.valueOf(dto.status()),
+                FollowFavorite.of(dto.favorite()),
+                FollowMuted.of(dto.muted())
+        );
+        return follow;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Follow follow = (Follow) o;
         return userId.equals(follow.userId) &&
                 followerId.equals(follow.followerId);
-
     }
 
     @Override
