@@ -11,7 +11,7 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
-public class FollowUnitTestCase extends UnitTestCase {
+public abstract class FollowUnitTestCase extends UnitTestCase {
 
     protected FollowRepository repository;
 

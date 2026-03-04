@@ -106,18 +106,13 @@ public class Follow {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Follow follow = (Follow) o;
-        return id.equals(follow.id) &&
-                userId.equals(follow.userId) &&
-                followerId.equals(follow.followerId) &&
-                status.equals(follow.status) &&
-                createdAt.equals(follow.createdAt) &&
-                updatedAt.equals(follow.updatedAt) &&
-                favorite.equals(follow.favorite) &&
-                muted.equals(follow.muted);
+        return userId.equals(follow.userId) &&
+                followerId.equals(follow.followerId);
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, followerId, status, createdAt, updatedAt, favorite, muted);
+        return Objects.hash(userId, followerId);
     }
 }

@@ -5,17 +5,18 @@ import java.util.Optional;
 
 public interface FollowRepository {
 
-    Follow save(Follow follow);
+    void save(Follow follow);
+
+    void delete(Follow follow);
+
+    boolean existsActiveFollow(UserId followerId, UserId followeeId);
 
     Optional<Follow> findById(FollowId id);
 
     Optional<Follow> findByUsers(UserId userId, UserId followerId);
 
-    boolean existsActiveFollow(UserId followerId, UserId followeeId);
-
     List<Follow> findFollowersOf(UserId userId);
 
     List<Follow> findFollowingOf(UserId userId);
 
-    void delete(Follow follow);
 }
