@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public final class FollowUnitTest {
 
     @Test
-    void it_should_create_a_follow() {
+    void it_should_unfollow_a_follow() {
         //GIVEN
         Follow follow = FollowTest.random();
 
@@ -91,7 +91,7 @@ public final class FollowUnitTest {
     }
 
     @Test
-    void it_unmute() {
+    void it_should_unmute() {
         //GIVEN
         Follow follow = FollowTest.randomWithMuted();
 
