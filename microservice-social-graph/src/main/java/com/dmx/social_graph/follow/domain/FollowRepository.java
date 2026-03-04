@@ -7,11 +7,7 @@ public interface FollowRepository {
 
     void save(Follow follow);
 
-    void delete(Follow follow);
-
     boolean existsActiveFollow(UserId followerId, UserId followeeId);
-
-    Optional<Follow> findById(FollowId id);
 
     Optional<Follow> findByUsers(UserId userId, UserId followerId);
 

@@ -20,12 +20,7 @@ public abstract class FollowUnitTestCase extends UnitTestCase {
         super.setUp();
         repository = mock(FollowRepository.class);
     }
-    public void shouldAnswerAnyFollow(Follow follow) {
-        when(repository.findById(follow.getId())).thenReturn(Optional.of(follow));
-    }
-    public void shouldNotAnswerAnything(FollowId id) {
-        when(repository.findById(id)).thenReturn(Optional.empty());
-    }
+
     public void shouldAnswerAnyFollowByUsers(Follow follow) {
         when(repository.findByUsers(follow.getUserId(), follow.getFollowerId())).thenReturn(Optional.of(follow));
     }
@@ -53,10 +48,6 @@ public abstract class FollowUnitTestCase extends UnitTestCase {
 
     public void shouldAnswerAnyEmptyListOfFollowing(Follow follow) {
         when(repository.findFollowingOf(follow.getFollowerId())).thenReturn(List.of());
-    }
-
-    public void shouldVerifyDeletedFollow(Follow follow) {
-        verify(repository, atLeastOnce()).delete(follow);
     }
 
     public void shouldVerifySavedFollow(Follow follow) {
