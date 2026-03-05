@@ -1,0 +1,54 @@
+package com.dmx.social_graph.block.domain;
+
+import com.dmx.social_graph.shared.domain.AggregateRoot;
+
+import java.util.Objects;
+
+public final class Block extends AggregateRoot {
+    private final BlockId blockId;
+    private final UserId userId;
+    private final UserId blockedId;
+    private final BlockInstant createAt;
+
+    public Block(BlockId blockId, UserId userId, UserId blockedId, BlockInstant createAt) {
+        this.blockId = blockId;
+        this.userId = userId;
+        this.blockedId = blockedId;
+        this.createAt = createAt;
+    }
+
+    public static Block create(BlockId blockId, UserId userId, UserId blockedId) {
+        if (userId.equals(blockedId)) {
+            throw new UserBlockThemselvesExcecption(userId);
+        }
+        return new Block(blockId, userId, blockedId, BlockInstant.now());
+    }
+
+    public BlockId getBlockId() {
+        return blockId;
+    }
+
+    public UserId getUserId() {
+        return userId;
+    }
+
+    public UserId getBlockedId() {
+        return blockedId;
+    }
+
+    public BlockInstant getCreateAt() {
+        return createAt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Block block = (Block) o;
+        return userId.equals(block.userId) && blockedId.equals(block.blockedId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, blockedId);
+    }
+}

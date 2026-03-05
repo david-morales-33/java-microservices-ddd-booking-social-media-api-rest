@@ -1,12 +1,9 @@
-package com.dmx.social_graph.user.domain;
+package com.dmx.social_graph.block.domain;
 
 import com.dmx.social_graph.shared.domain.Identifier;
 
-public class UserId extends Identifier {
+public final class UserId extends Identifier {
     public UserId(String value) {
         super(value);
-    }
-
-    public UserId() {
     }
 }
