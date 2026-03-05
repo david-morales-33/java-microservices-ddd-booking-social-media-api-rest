@@ -1,4 +1,15 @@
 package com.dmx.social_graph.follow.application.find_following_by_user;
 
-public class FindFollowingByUserQuery {
+import com.dmx.social_graph.shared.domain.bus.query.Query;
+
+public final class FindFollowingByUserQuery implements Query {
+    private final String userId;
+
+    public FindFollowingByUserQuery(String userId) {
+        this.userId = userId;
+    }
+
+    public String userId() {
+        return userId;
+    }
 }

@@ -1,4 +1,19 @@
 package com.dmx.social_graph.follow.application.find_following_by_user;
 
-public class FindFollowingByUserQueryHandler {
+import com.dmx.social_graph.follow.domain.UserId;
+import com.dmx.social_graph.shared.domain.bus.query.QueryHandler;
+
+public final class FindFollowingByUserQueryHandler implements QueryHandler<FindFollowingByUserQuery, FollowingByUserResponse> {
+
+    private final FollowingByUserFinder finder;
+
+    public FindFollowingByUserQueryHandler(FollowingByUserFinder finder) {
+        this.finder = finder;
+    }
+
+    @Override
+    public FollowingByUserResponse handle(FindFollowingByUserQuery query) {
+        UserId userId = new UserId(query.userId());
+        return this.finder.execute(userId);
+    }
 }
