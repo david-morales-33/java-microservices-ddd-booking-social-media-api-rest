@@ -42,6 +42,10 @@ public abstract class FollowUnitTestCase extends UnitTestCase {
         when(repository.findFollowersOf(follow.getUserId())).thenReturn(List.of());
     }
 
+    public void shouldAnswerAnyListOfFollowersWithMultiple(Follow... follows) {
+        when(repository.findFollowersOf(follows[0].getUserId())).thenReturn(List.of(follows));
+    }
+
     public void shouldAnswerAnyListOfFollowing(Follow follow) {
         when(repository.findFollowingOf(follow.getFollowerId())).thenReturn(List.of(follow));
     }
@@ -52,5 +56,9 @@ public abstract class FollowUnitTestCase extends UnitTestCase {
 
     public void shouldVerifySavedFollow(Follow follow) {
         verify(repository, atLeastOnce()).save(follow);
+    }
+
+    public void shouldVerifyDeletedFollow(Follow follow) {
+        verify(repository, atLeastOnce()).delete(follow);
     }
 }

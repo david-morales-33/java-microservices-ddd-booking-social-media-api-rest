@@ -7,54 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public final class FollowUnitTest {
 
     @Test
-    void it_should_unfollow_a_follow() {
-        //GIVEN
-        Follow follow = FollowTest.random();
-
-        //WHEN
-        follow.unfollow();
-
-        //THEN
-        assertEquals(FollowStatus.UNFOLLOWED, follow.getStatus());
-    }
-
-    @Test
-    void it_should_throw_an_exception_when_unfollow_is_unable() {
-        //GIVEN
-        Follow follow = FollowTest.random();
-
-        //WHEN
-        follow.unfollow();
-
-        //THEN
-        assertThrows(UnfollowException.class, follow::unfollow);
-    }
-
-    @Test
-    void it_should_reactivate_a_follow() {
-        //GIVEN
-        Follow follow = FollowTest.random();
-
-        //WHEN
-        follow.reactivate();
-
-        //THEN
-        assertEquals(FollowStatus.ACTIVE, follow.getStatus());
-    }
-
-    @Test
-    void it_should_throw_an_exception_when_reactivate_is_unable() {
-        //GIVEN
-        Follow follow = FollowTest.random();
-
-        //WHEN
-        follow.block();
-
-        //THEN
-        assertThrows(ReactiveException.class, follow::reactivate);
-    }
-
-    @Test
     void it_should_mark_as_favorite() {
         //GIVEN
         Follow follow = FollowTest.random();

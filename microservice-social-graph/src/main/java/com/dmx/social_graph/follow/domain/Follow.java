@@ -6,7 +6,6 @@ public class Follow {
     private final FollowId id;
     private final UserId userId;
     private final UserId followerId;
-    private FollowStatus status;
     private final FollowInstant createdAt;
     private FollowInstant updatedAt;
     private FollowFavorite favorite;
@@ -23,7 +22,7 @@ public class Follow {
         this.updatedAt = FollowInstant.now();
     }
 
-    public Follow(FollowId id, UserId userId, UserId followerId, FollowStatus status, FollowFavorite favorite, FollowMuted muted) {
+    public Follow(FollowId id, UserId userId, UserId followerId, FollowFavorite favorite, FollowMuted muted) {
         if (userId.equals(followerId)) {
             throw new UserFollowThemselvesExecption(followerId);
         }
@@ -32,7 +31,6 @@ public class Follow {
         this.userId = userId;
         this.createdAt = FollowInstant.now();
         this.updatedAt = FollowInstant.now();
-        this.status = status;
         this.favorite = favorite;
         this.muted = muted;
     }
@@ -42,27 +40,11 @@ public class Follow {
                 new FollowId(FollowId.generate()),
                 userId,
                 followerId,
-                FollowStatus.ACTIVE,
                 FollowFavorite.of(false),
                 FollowMuted.of(false)
         );
     }
 
-    public void unfollow() {
-        if (this.status == FollowStatus.UNFOLLOWED) {
-            throw new UnfollowException();
-        }
-        this.status = FollowStatus.UNFOLLOWED;
-        this.updatedAt = FollowInstant.now();
-    }
-
-    public void reactivate() {
-        if (this.status == FollowStatus.BLOCKED) {
-            throw new ReactiveException();
-        }
-        this.status = FollowStatus.ACTIVE;
-        this.updatedAt = FollowInstant.now();
-    }
 
     public void markAsFavorite() {
         this.favorite = FollowFavorite.of(true);
@@ -84,11 +66,6 @@ public class Follow {
         this.updatedAt = FollowInstant.now();
     }
 
-    public void block() {
-        this.status = FollowStatus.BLOCKED;
-        this.updatedAt = FollowInstant.now();
-    }
-
     public FollowId getId() {
         return id;
     }
@@ -101,9 +78,6 @@ public class Follow {
         return followerId;
     }
 
-    public FollowStatus getStatus() {
-        return status;
-    }
 
     public FollowInstant getCreatedAt() {
         return createdAt;
@@ -126,7 +100,6 @@ public class Follow {
                 this.id.value(),
                 this.userId.value(),
                 this.followerId.value(),
-                this.status.value(),
                 FollowInstant.dateToString(java.time.LocalDateTime.now()),
                 FollowInstant.dateToString(java.time.LocalDateTime.now()),
                 this.favorite.value(),
@@ -135,15 +108,14 @@ public class Follow {
     }
 
     public static Follow fromPrimitives(FollowDTO dto) {
-        Follow follow = new Follow(
+        return new Follow(
                 new FollowId(dto.id()),
                 new UserId(dto.userId()),
                 new UserId(dto.followerId()),
-                FollowStatus.valueOf(dto.status()),
                 FollowFavorite.of(dto.favorite()),
                 FollowMuted.of(dto.muted())
         );
-        return follow;
+
     }
 
     @Override

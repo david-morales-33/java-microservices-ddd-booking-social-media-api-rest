@@ -6,6 +6,7 @@ import java.util.Optional;
 public interface FollowRepository {
 
     void save(Follow follow);
+    void delete(Follow follow);
 
     boolean existsActiveFollow(UserId followerId, UserId followeeId);
 

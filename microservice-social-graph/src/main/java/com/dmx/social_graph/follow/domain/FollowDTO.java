@@ -6,7 +6,6 @@ public record FollowDTO(
         String id,
         String userId,
         String followerId,
-        String status,
         String createdAt,
         String updatedAt,
         Boolean favorite,

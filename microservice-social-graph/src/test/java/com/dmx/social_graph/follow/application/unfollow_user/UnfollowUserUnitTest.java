@@ -30,11 +30,11 @@ public final class UnfollowUserUnitTest extends FollowUnitTestCase {
         );
 
         //WHEN
+        shouldAnswerAnyFollowByUsers(follow);
         handler.handle(command);
 
         //THEN
-        shouldAnswerAnyFollowByUsers(follow);
-        shouldVerifySavedFollow(follow);
+        shouldVerifyDeletedFollow(follow);
     }
 
     @Test

@@ -10,7 +10,7 @@ public final class FindFollowByUserQueryHandler implements QueryHandler<FindFoll
     public FindFollowByUserQueryHandler(FollowByUserFinder finder) {
         this.finder = finder;
     }
-    
+
     @Override
     public FollowerByUserResponse handle(FindFollowerByUserQuery query) {
         UserId userId = new UserId(query.userId());

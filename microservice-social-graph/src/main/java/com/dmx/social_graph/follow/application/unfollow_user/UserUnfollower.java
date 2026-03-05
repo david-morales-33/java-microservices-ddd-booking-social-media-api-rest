@@ -21,8 +21,6 @@ public class UserUnfollower {
 
         Follow follow = response.get();
 
-        follow.unfollow();
-
-        repository.save(follow);
+        repository.delete(follow);
     }
 }
