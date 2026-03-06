@@ -9,13 +9,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
 public final class BlockUserCommandHandlerTest extends BlockUnitTestCase {
 
     private BlockUserCommandHandler handler;
 
     @BeforeEach
-    void ssetup(){
+    void ssetup() {
         super.setUp();
         handler = new BlockUserCommandHandler(new UserBlocker(repository));
     }

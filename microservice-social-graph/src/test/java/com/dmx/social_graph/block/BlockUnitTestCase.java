@@ -5,6 +5,8 @@ import com.dmx.social_graph.block.domain.BlockRepository;
 import com.dmx.social_graph.shared.infrastructure.UnitTestCase;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.util.Optional;
+
 import static org.mockito.Mockito.*;
 
 public abstract class BlockUnitTestCase extends UnitTestCase {
@@ -35,5 +37,13 @@ public abstract class BlockUnitTestCase extends UnitTestCase {
 
     public void shouldNotAnswerBlockUser(Block block) {
         when(repository.existsByUsers(block.getUserId(), block.getBlockedId())).thenReturn(false);
+    }
+
+    public void shouldAnswerFindByUsers(Block block) {
+        when(repository.findByUsers(block.getUserId(), block.getBlockedId())).thenReturn(Optional.of(block));
+    }
+
+    public void shouldNotAnswerFindByUsers(Block block) {
+        when(repository.findByUsers(block.getUserId(), block.getBlockedId())).thenReturn(Optional.empty());
     }
 }
