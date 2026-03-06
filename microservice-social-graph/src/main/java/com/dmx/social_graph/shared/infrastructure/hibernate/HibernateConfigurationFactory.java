@@ -83,11 +83,11 @@ public final class HibernateConfigurationFactory {
     }
 
     private List<String> subdirectoriesFor() {
-        String path = "./microservice-profile/src/main/java/com/dmx/profile/";
+        String path = "./microservice-social-graph/src/main/java/com/dmx/social_graph/";
 
         String[] files = new File(path).list((current, name) -> new File(current, name).isDirectory());
         if (null == files) {
-            path = "./src/main/java/com/dmx/profile/";
+            path = "./src/main/java/com/dmx/social_graph/";
             files = new File(path).list((current, name) -> new File(current, name).isDirectory());
         }
 
@@ -118,7 +118,7 @@ public final class HibernateConfigurationFactory {
 
     private Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
-        hibernateProperties.put(AvailableSettings.HBM2DDL_AUTO, "none");
+        hibernateProperties.put(AvailableSettings.HBM2DDL_AUTO, "create-drop");
         hibernateProperties.put(AvailableSettings.SHOW_SQL, "true");
         hibernateProperties.put(AvailableSettings.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
         hibernateProperties.put(AvailableSettings.TRANSFORM_HBM_XML, true);
