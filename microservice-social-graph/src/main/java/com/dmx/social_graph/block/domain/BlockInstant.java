@@ -1,12 +1,12 @@
 package com.dmx.social_graph.block.domain;
 
-import com.dmx.social_graph.shared.domain.Identifier;
+import com.dmx.social_graph.shared.domain.StringValueObject;
 import com.dmx.social_graph.shared.domain.Utils;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-public final class BlockInstant extends Identifier {
+public final class BlockInstant extends StringValueObject {
     public BlockInstant(String id) {
         super(id);
     }
