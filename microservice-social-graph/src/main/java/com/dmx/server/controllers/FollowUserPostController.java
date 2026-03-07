@@ -1,0 +1,44 @@
+package com.dmx.server.controllers;
+
+import com.dmx.server.dto.FollowUserRequest;
+import com.dmx.social_graph.follow.application.follow_user.FollowUserCommand;
+import com.dmx.social_graph.follow.domain.UserFollowNotAllowedException;
+import com.dmx.social_graph.shared.domain.DomainException;
+import com.dmx.social_graph.shared.domain.bus.command.CommandBus;
+import com.dmx.social_graph.shared.domain.bus.query.QueryBus;
+import com.dmx.social_graph.shared.infrastructure.spring.ApiController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+
+@RestController
+@RequestMapping("/api/msvc-social-graph")
+public class FollowUserPostController extends ApiController {
+
+    public FollowUserPostController(QueryBus queryBus, CommandBus commandBus) {
+        super(queryBus, commandBus);
+    }
+
+    @PostMapping(value = "/follow-user")
+    public ResponseEntity<String> index(@RequestBody FollowUserRequest request) {
+
+        FollowUserCommand command = new FollowUserCommand(request.followedId(), request.followerId());
+        dispatch(command);
+        System.out.println(command);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
+    public HashMap<Class<? extends DomainException>, HttpStatus> errorMapping() {
+        return new HashMap<Class<? extends DomainException>, HttpStatus>() {
+            {
+                put(UserFollowNotAllowedException.class, HttpStatus.BAD_REQUEST);
+            }
+        };
+    }
+}

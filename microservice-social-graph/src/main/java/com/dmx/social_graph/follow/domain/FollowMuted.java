@@ -7,6 +7,10 @@ public class FollowMuted extends BooleanValueObject {
         super(value);
     }
 
+    private FollowMuted() {
+        super(null);
+    }
+
     public static FollowMuted of(boolean value) {
         return new FollowMuted(value);
     }

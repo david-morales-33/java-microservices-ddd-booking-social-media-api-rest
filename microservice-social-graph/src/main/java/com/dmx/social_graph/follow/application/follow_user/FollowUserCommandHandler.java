@@ -1,8 +1,10 @@
 package com.dmx.social_graph.follow.application.follow_user;
 
 import com.dmx.social_graph.follow.domain.UserId;
+import com.dmx.social_graph.shared.domain.Service;
 import com.dmx.social_graph.shared.domain.bus.command.CommandHandler;
 
+@Service
 public class FollowUserCommandHandler implements CommandHandler<FollowUserCommand> {
     private final UserFollower follower;
 

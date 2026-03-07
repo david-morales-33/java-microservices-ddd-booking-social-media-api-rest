@@ -15,9 +15,7 @@ import org.springframework.context.annotation.FilterType;
 		value = "com.dmx"
 )
 public class MicroserviceProfileApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(MicroserviceProfileApplication.class, args);
 	}
-
 }

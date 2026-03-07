@@ -1,5 +1,8 @@
 package com.dmx.server;
 
+import com.dmx.social_graph.follow.domain.Follow;
+import com.dmx.social_graph.follow.domain.FollowId;
+import com.dmx.social_graph.follow.domain.UserId;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -33,6 +36,9 @@ public class Test {
 
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+
+        Follow follow = session.get(Follow.class, new FollowId("ac3ac511-4f9c-465c-912d-4ddf80ff59eb"));
+        System.out.println(follow.toPrimitives());
         transaction.commit();
     }
 }

@@ -35,11 +35,11 @@ public class ProfileHibernateConfiguration {
     @Bean("profile-data_source")
     public DataSource dataSource() throws IOException, ParameterNotExist {
         return factory.dataSource(
-            config.get("MOOC_DATABASE_HOST"),
-            config.getInt("MOOC_DATABASE_PORT"),
-            config.get("MOOC_DATABASE_NAME"),
-            config.get("MOOC_DATABASE_USER"),
-            config.get("MOOC_DATABASE_PASSWORD")
+            config.get("PROFILE_DATABASE_HOST"),
+            config.getInt("PROFILE_DATABASE_PORT"),
+            config.get("PROFILE_DATABASE_NAME"),
+            config.get("PROFILE_DATABASE_USER"),
+            config.get("PROFILE_DATABASE_PASSWORD")
         );
     }
 }

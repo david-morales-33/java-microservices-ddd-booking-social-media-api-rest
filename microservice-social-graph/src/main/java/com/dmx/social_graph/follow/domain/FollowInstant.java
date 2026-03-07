@@ -1,14 +1,21 @@
 package com.dmx.social_graph.follow.domain;
 
-import com.dmx.social_graph.shared.domain.StringValueObject;
 import com.dmx.social_graph.shared.domain.Utils;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class FollowInstant extends StringValueObject {
-    public FollowInstant(String value) {
-        super(value);
+public class FollowInstant implements Serializable {
+    private Timestamp value;
+
+    public FollowInstant(Timestamp value) {
+        this.value = value;
+    }
+
+    private FollowInstant() {
+        value = null;
     }
 
     public static String dateToString(LocalDateTime dateTime) {
@@ -20,8 +27,10 @@ public class FollowInstant extends StringValueObject {
     }
 
     public static FollowInstant now() {
-        LocalDateTime now = LocalDateTime.now();
-        Timestamp timestamp = Timestamp.valueOf(now);
-        return new FollowInstant(dateToString(timestamp));
+        return new FollowInstant(Timestamp.valueOf(LocalDateTime.now()));
+    }
+
+    public Timestamp value() {
+        return value;
     }
 }

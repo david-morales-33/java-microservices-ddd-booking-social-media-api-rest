@@ -22,6 +22,13 @@ public class Follow {
         this.updatedAt = FollowInstant.now();
     }
 
+    private Follow() {
+        this.id = null;
+        this.followerId = null;
+        this.userId = null;
+        this.createdAt = null;
+    }
+
     public Follow(FollowId id, UserId userId, UserId followerId, FollowFavorite favorite, FollowMuted muted) {
         if (userId.equals(followerId)) {
             throw new UserFollowThemselvesExecption(followerId);

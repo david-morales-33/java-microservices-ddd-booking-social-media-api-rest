@@ -7,6 +7,6 @@ public class UserId extends Identifier {
         super(value);
     }
 
-    public UserId() {
+    private UserId() {
     }
 }
