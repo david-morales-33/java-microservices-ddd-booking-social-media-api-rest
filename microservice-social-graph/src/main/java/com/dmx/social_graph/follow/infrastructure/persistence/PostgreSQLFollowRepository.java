@@ -4,6 +4,10 @@ import com.dmx.social_graph.follow.domain.Follow;
 import com.dmx.social_graph.follow.domain.FollowRepository;
 import com.dmx.social_graph.follow.domain.UserId;
 import com.dmx.social_graph.shared.domain.Service;
+import com.dmx.social_graph.shared.domain.criteria.Criteria;
+import com.dmx.social_graph.shared.domain.criteria.Filter;
+import com.dmx.social_graph.shared.domain.criteria.Filters;
+import com.dmx.social_graph.shared.domain.criteria.Order;
 import com.dmx.social_graph.shared.infrastructure.hibernate.HibernateRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -41,7 +45,13 @@ public class PostgreSQLFollowRepository extends HibernateRepository<Follow> impl
 
     @Override
     public List<Follow> findFollowersOf(UserId userId) {
-        return List.of();
+
+        Filters filters = new Filters(List.of(Filter.create("userId.value", "=", userId.value())));
+        Order order = Order.none();
+
+        Criteria criteria = new Criteria(filters, order);
+
+        return byCriteria(criteria);
     }
 
     @Override

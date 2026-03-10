@@ -8,7 +8,8 @@ public record FollowDTO(
         String followerId,
         String createdAt,
         String updatedAt,
-        Boolean favorite,
-        Boolean muted
+        boolean favorite,
+        boolean muted
 ) implements Serializable {
+
 }

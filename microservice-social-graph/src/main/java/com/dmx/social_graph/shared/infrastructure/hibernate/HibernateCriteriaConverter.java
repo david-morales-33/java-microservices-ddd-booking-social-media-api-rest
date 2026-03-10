@@ -27,13 +27,13 @@ public final class HibernateCriteriaConverter<T> {
 
     public CriteriaQuery<T> convert(Criteria criteria, Class<T> aggregateClass) {
         CriteriaQuery<T> hibernateCriteria = builder.createQuery(aggregateClass);
-        Root<T>          root              = hibernateCriteria.from(aggregateClass);
+        Root<T> root = hibernateCriteria.from(aggregateClass);
 
         hibernateCriteria.where(formatPredicates(criteria.filters().filters(), root));
 
         if (criteria.order().hasOrder()) {
             Path<Object> orderBy = root.get(criteria.order().orderBy().value());
-            Order        order   = criteria.order().orderType().isAsc() ? builder.asc(orderBy) : builder.desc(orderBy);
+            Order order = criteria.order().orderType().isAsc() ? builder.asc(orderBy) : builder.desc(orderBy);
 
             hibernateCriteria.orderBy(order);
         }
@@ -43,14 +43,26 @@ public final class HibernateCriteriaConverter<T> {
 
     private Predicate[] formatPredicates(List<Filter> filters, Root<T> root) {
         List<Predicate> predicates = filters.stream().map(filter -> formatPredicate(
-            filter,
-            root
+                filter,
+                root
         )).collect(Collectors.toList());
 
         Predicate[] predicatesArray = new Predicate[predicates.size()];
         predicatesArray = predicates.toArray(predicatesArray);
 
         return predicatesArray;
+    }
+
+    private Path<?> resolvePath(Root<T> root, String field) {
+        String[] parts = field.split("\\.");
+
+        Path<?> path = root;
+
+        for (String part : parts) {
+            path = path.get(part);
+        }
+
+        return path;
     }
 
     private Predicate formatPredicate(Filter filter, Root<T> root) {
@@ -60,7 +72,7 @@ public final class HibernateCriteriaConverter<T> {
     }
 
     private Predicate equalsPredicateTransformer(Filter filter, Root<T> root) {
-        return builder.equal(root.get(filter.field().value()), filter.value().value());
+        return builder.equal(resolvePath(root, filter.field().value()), filter.value().value());
     }
 
     private Predicate notEqualsPredicateTransformer(Filter filter, Root<T> root) {

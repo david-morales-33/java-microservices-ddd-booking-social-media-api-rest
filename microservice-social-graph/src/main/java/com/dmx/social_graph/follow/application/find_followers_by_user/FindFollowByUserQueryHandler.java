@@ -1,9 +1,11 @@
 package com.dmx.social_graph.follow.application.find_followers_by_user;
 
 import com.dmx.social_graph.follow.domain.UserId;
+import com.dmx.social_graph.shared.domain.Service;
 import com.dmx.social_graph.shared.domain.bus.query.QueryHandler;
 
-public final class FindFollowByUserQueryHandler implements QueryHandler<FindFollowerByUserQuery, FollowerByUserResponse> {
+@Service
+public class FindFollowByUserQueryHandler implements QueryHandler<FindFollowerByUserQuery, FollowerByUserResponse> {
 
     private final FollowByUserFinder finder;
 
