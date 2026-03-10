@@ -7,7 +7,7 @@ import com.dmx.social_graph.shared.domain.bus.query.Response;
 import java.io.Serializable;
 import java.util.List;
 
-public class FollowerByUserResponse implements Response, Serializable {
+public final class FollowerByUserResponse implements Response, Serializable {
     private final List<FollowDTO> followers;
 
     public FollowerByUserResponse(List<Follow> followers) {

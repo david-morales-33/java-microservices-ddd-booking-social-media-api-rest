@@ -2,7 +2,8 @@ package com.dmx.server.controllers;
 
 import com.dmx.server.dto.FollowUserRequest;
 import com.dmx.social_graph.follow.application.follow_user.FollowUserCommand;
-import com.dmx.social_graph.follow.domain.UserFollowNotAllowedException;
+import com.dmx.social_graph.follow.domain.FollowAlreadyExists;
+import com.dmx.social_graph.follow.domain.UserFollowThemselvesExecption;
 import com.dmx.social_graph.shared.domain.DomainException;
 import com.dmx.social_graph.shared.domain.bus.command.CommandBus;
 import com.dmx.social_graph.shared.domain.bus.query.QueryBus;
@@ -29,7 +30,6 @@ public class FollowUserPostController extends ApiController {
 
         FollowUserCommand command = new FollowUserCommand(request.followedId(), request.followerId());
         dispatch(command);
-        System.out.println(command);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -37,7 +37,8 @@ public class FollowUserPostController extends ApiController {
     public HashMap<Class<? extends DomainException>, HttpStatus> errorMapping() {
         return new HashMap<Class<? extends DomainException>, HttpStatus>() {
             {
-                put(UserFollowNotAllowedException.class, HttpStatus.BAD_REQUEST);
+                put(FollowAlreadyExists.class, HttpStatus.BAD_REQUEST);
+                put(UserFollowThemselvesExecption.class, HttpStatus.FORBIDDEN);
             }
         };
     }

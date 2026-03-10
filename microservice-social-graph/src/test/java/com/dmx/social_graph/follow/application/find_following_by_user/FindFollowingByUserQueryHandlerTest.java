@@ -26,15 +26,15 @@ public final class FindFollowingByUserQueryHandlerTest extends FollowUnitTestCas
     void it_should_find_following_for_a_user() {
         // GIVEN
         FollowingByUserResponse response = FollowingByUserResponseMother.random();
-        UserId userId = new UserId(response.following().get(0).followerId());
+        UserId userId = new UserId(response.getFollowing().get(0).followerId());
         FindFollowingByUserQuery query = FindFollowingByUserQueryMother.create(userId.value());
 
-        Follow follow = Follow.fromPrimitives(response.following().get(0));
+        Follow follow = Follow.fromPrimitives(response.getFollowing().get(0));
         // WHEN
         shouldAnswerAnyListOfFollowing(follow);
 
         // THEN
-        assertEquals(response.following().get(0), handler.handle(query).following().get(0));
+        assertEquals(response.getFollowing().get(0), handler.handle(query).getFollowing().get(0));
     }
 
     @Test
@@ -50,6 +50,6 @@ public final class FindFollowingByUserQueryHandlerTest extends FollowUnitTestCas
 
         // THEN
         assertNotNull(response);
-        assertEquals(0, response.following().size());
+        assertEquals(0, response.getFollowing().size());
     }
 }

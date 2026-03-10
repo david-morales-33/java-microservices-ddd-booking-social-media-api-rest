@@ -5,7 +5,7 @@ import com.dmx.social_graph.shared.domain.Service;
 import com.dmx.social_graph.shared.domain.bus.query.QueryHandler;
 
 @Service
-public class FindFollowByUserQueryHandler implements QueryHandler<FindFollowerByUserQuery, FollowerByUserResponse> {
+public final class FindFollowByUserQueryHandler implements QueryHandler<FindFollowerByUserQuery, FollowerByUserResponse> {
 
     private final FollowByUserFinder finder;
 

@@ -5,7 +5,7 @@ import com.dmx.social_graph.shared.domain.Service;
 import com.dmx.social_graph.shared.domain.bus.command.CommandHandler;
 
 @Service
-public class FollowUserCommandHandler implements CommandHandler<FollowUserCommand> {
+public final class FollowUserCommandHandler implements CommandHandler<FollowUserCommand> {
     private final UserFollower follower;
 
     public FollowUserCommandHandler(UserFollower follower) {

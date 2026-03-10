@@ -1,8 +1,10 @@
 package com.dmx.social_graph.follow.domain;
 
+import com.dmx.social_graph.shared.domain.AggregateRoot;
+
 import java.util.Objects;
 
-public class Follow {
+public class Follow extends AggregateRoot {
     private final FollowId id;
     private final UserId userId;
     private final UserId followerId;

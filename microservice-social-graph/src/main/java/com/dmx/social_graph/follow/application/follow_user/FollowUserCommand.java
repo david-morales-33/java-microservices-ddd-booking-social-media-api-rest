@@ -2,7 +2,7 @@ package com.dmx.social_graph.follow.application.follow_user;
 
 import com.dmx.social_graph.shared.domain.bus.command.Command;
 
-public class FollowUserCommand implements Command {
+public final class FollowUserCommand implements Command {
 
     private final String userId;
     private final String followerId;

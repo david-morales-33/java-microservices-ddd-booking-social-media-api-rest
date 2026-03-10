@@ -8,7 +8,7 @@ public interface FollowRepository {
     void save(Follow follow);
     void delete(Follow follow);
 
-    boolean existsActiveFollow(UserId followerId, UserId followeeId);
+    boolean existsActiveFollow(UserId followerId, UserId userId);
 
     Optional<Follow> findByUsers(UserId userId, UserId followerId);
 

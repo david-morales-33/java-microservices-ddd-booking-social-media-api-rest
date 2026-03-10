@@ -23,6 +23,7 @@ public class PostgreSQLFollowRepository extends HibernateRepository<Follow> impl
     public PostgreSQLFollowRepository(@Qualifier("social_graph-session_factory") SessionFactory sessionFactory) {
         super(sessionFactory, Follow.class);
     }
+
     @Override
     public void save(Follow follow) {
         persist(follow);
@@ -34,28 +35,38 @@ public class PostgreSQLFollowRepository extends HibernateRepository<Follow> impl
     }
 
     @Override
-    public boolean existsActiveFollow(UserId followerId, UserId followeeId) {
-        return false;
+    public boolean existsActiveFollow(UserId followerId, UserId userId) {
+        Filters filters = new Filters(List.of(
+                Filter.create("userId.value", "=", userId.value()),
+                Filter.create("followerId.value", "=", followerId.value())
+        ));
+        Order order = Order.none();
+        Criteria criteria = new Criteria(filters, order);
+        return !byCriteria(criteria).isEmpty();
     }
 
     @Override
     public Optional<Follow> findByUsers(UserId userId, UserId followerId) {
-        return Optional.empty();
+        Filters filters = new Filters(List.of(Filter.create("userId.value", "=", userId.value())));
+        Order order = Order.none();
+        Criteria criteria = new Criteria(filters, order);
+        List<Follow> follow= byCriteria(criteria);
+        return follow.isEmpty() ? Optional.empty() : Optional.of(follow.get(0));
     }
 
     @Override
     public List<Follow> findFollowersOf(UserId userId) {
-
         Filters filters = new Filters(List.of(Filter.create("userId.value", "=", userId.value())));
         Order order = Order.none();
-
         Criteria criteria = new Criteria(filters, order);
-
         return byCriteria(criteria);
     }
 
     @Override
     public List<Follow> findFollowingOf(UserId userId) {
-        return List.of();
+        Filters filters = new Filters(List.of(Filter.create("followerId.value", "=", userId.value())));
+        Order order = Order.none();
+        Criteria criteria = new Criteria(filters, order);
+        return byCriteria(criteria);
     }
 }
