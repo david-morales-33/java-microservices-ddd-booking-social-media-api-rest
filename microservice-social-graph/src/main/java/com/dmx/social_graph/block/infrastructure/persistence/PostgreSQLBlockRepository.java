@@ -31,7 +31,7 @@ public class PostgreSQLBlockRepository extends HibernateRepository<Block> implem
 
     @Override
     public void delete(Block block) {
-
+        remove(block);
     }
 
     @Override
@@ -47,6 +47,13 @@ public class PostgreSQLBlockRepository extends HibernateRepository<Block> implem
 
     @Override
     public Optional<Block> findByUsers(UserId userId, UserId blockedId) {
-        return Optional.empty();
+        Filters filters = new Filters(List.of(
+                Filter.create("userId.value", "=", userId.value()),
+                Filter.create("blockedId.value", "=", blockedId.value())
+        ));
+        Order order = Order.none();
+        Criteria criteria = new Criteria(filters, order);
+        List<Block> block = byCriteria(criteria);
+        return block.isEmpty() ? Optional.empty() : Optional.of(block.get(0));
     }
 }

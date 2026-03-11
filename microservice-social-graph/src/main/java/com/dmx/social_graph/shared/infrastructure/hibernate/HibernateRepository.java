@@ -9,18 +9,24 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class HibernateRepository<T> {
-    protected final SessionFactory             sessionFactory;
-    protected final Class<T>                   aggregateClass;
+    protected final SessionFactory sessionFactory;
+    protected final Class<T> aggregateClass;
     protected final HibernateCriteriaConverter<T> criteriaConverter;
 
     public HibernateRepository(SessionFactory sessionFactory, Class<T> aggregateClass) {
-        this.sessionFactory    = sessionFactory;
-        this.aggregateClass    = aggregateClass;
+        this.sessionFactory = sessionFactory;
+        this.aggregateClass = aggregateClass;
         this.criteriaConverter = new HibernateCriteriaConverter<>(sessionFactory.getCriteriaBuilder());
     }
 
     protected void persist(T entity) {
         sessionFactory.getCurrentSession().persist(entity);
+        sessionFactory.getCurrentSession().flush();
+        sessionFactory.getCurrentSession().clear();
+    }
+
+    protected void remove(T entity) {
+        sessionFactory.getCurrentSession().remove(entity);
         sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().clear();
     }

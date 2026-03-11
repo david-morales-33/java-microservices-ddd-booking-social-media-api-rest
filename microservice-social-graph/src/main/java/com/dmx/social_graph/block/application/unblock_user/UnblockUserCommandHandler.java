@@ -1,8 +1,10 @@
 package com.dmx.social_graph.block.application.unblock_user;
 
 import com.dmx.social_graph.block.domain.UserId;
+import com.dmx.social_graph.shared.domain.Service;
 import com.dmx.social_graph.shared.domain.bus.command.CommandHandler;
 
+@Service
 public class UnblockUserCommandHandler implements CommandHandler<UnblockUserCommand> {
     private final UserUnblocker unblocker;
 
