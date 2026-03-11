@@ -31,7 +31,7 @@ public class PostgreSQLFollowRepository extends HibernateRepository<Follow> impl
 
     @Override
     public void delete(Follow follow) {
-
+        remove(follow);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class PostgreSQLFollowRepository extends HibernateRepository<Follow> impl
         Filters filters = new Filters(List.of(Filter.create("userId.value", "=", userId.value())));
         Order order = Order.none();
         Criteria criteria = new Criteria(filters, order);
-        List<Follow> follow= byCriteria(criteria);
+        List<Follow> follow = byCriteria(criteria);
         return follow.isEmpty() ? Optional.empty() : Optional.of(follow.get(0));
     }
 

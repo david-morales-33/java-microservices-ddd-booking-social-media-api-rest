@@ -2,35 +2,40 @@ package com.dmx.server.controllers;
 
 import com.dmx.server.dto.UnblockUserRequest;
 import com.dmx.social_graph.block.application.unblock_user.UnblockUserCommand;
-import com.dmx.social_graph.block.domain.UserBlockNotAllowedException;
+import com.dmx.social_graph.follow.application.unfollow_user.UnfollowUserCommand;
+import com.dmx.social_graph.follow.domain.FollowDoesNotExistException;
 import com.dmx.social_graph.shared.domain.DomainException;
 import com.dmx.social_graph.shared.domain.bus.command.CommandBus;
 import com.dmx.social_graph.shared.domain.bus.query.QueryBus;
 import com.dmx.social_graph.shared.infrastructure.spring.ApiController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 
 @RestController
 @RequestMapping("/api/msvc-social-graph/")
-public class UnblockUserDeleteController extends ApiController {
-    public UnblockUserDeleteController(QueryBus queryBus, CommandBus commandBus) {
+public class UnfollowUserDeleteController extends ApiController {
+    public UnfollowUserDeleteController(QueryBus queryBus, CommandBus commandBus) {
         super(queryBus, commandBus);
     }
-    @DeleteMapping(value = "/unblock-user")
+
+    @DeleteMapping(value = "/unfollow-user")
     public ResponseEntity<String> index(@RequestBody UnblockUserRequest request) {
 
-        UnblockUserCommand command = new UnblockUserCommand(request.userId(), request.blockedId());
+        UnfollowUserCommand command = new UnfollowUserCommand(request.userId(), request.blockedId());
         dispatch(command);
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @Override
     public HashMap<Class<? extends DomainException>, HttpStatus> errorMapping() {
-        return new HashMap<Class<? extends DomainException>, HttpStatus>(){{
-            put(UserBlockNotAllowedException.class, HttpStatus.BAD_REQUEST);
+        return new HashMap<Class<? extends DomainException>, HttpStatus>() {{
+            put(FollowDoesNotExistException.class, HttpStatus.BAD_REQUEST);
         }};
     }
 }
