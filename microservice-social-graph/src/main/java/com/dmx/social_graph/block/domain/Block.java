@@ -17,6 +17,13 @@ public final class Block extends AggregateRoot {
         this.createAt = createAt;
     }
 
+    public Block() {
+        blockId = null;
+        userId = null;
+        blockedId =null;
+        createAt = null;
+    }
+
     public static Block create(BlockId blockId, UserId userId, UserId blockedId) {
         if (userId.equals(blockedId)) {
             throw new UserBlockThemselvesExcecption(userId);

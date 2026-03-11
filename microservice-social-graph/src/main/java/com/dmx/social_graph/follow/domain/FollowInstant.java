@@ -4,7 +4,6 @@ import com.dmx.social_graph.shared.domain.Utils;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class FollowInstant implements Serializable {

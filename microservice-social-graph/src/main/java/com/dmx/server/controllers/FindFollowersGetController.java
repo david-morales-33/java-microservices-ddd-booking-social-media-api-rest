@@ -1,6 +1,5 @@
 package com.dmx.server.controllers;
 
-import com.dmx.server.dto.FindFollowersRequest;
 import com.dmx.social_graph.follow.application.find_followers_by_user.FindFollowerByUserQuery;
 import com.dmx.social_graph.follow.application.find_followers_by_user.FollowerByUserResponse;
 import com.dmx.social_graph.follow.domain.FollowDoesNotExistException;

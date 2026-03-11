@@ -6,4 +6,7 @@ public final class BlockId extends Identifier {
     public BlockId(String value) {
         super(value);
     }
+
+    public BlockId() {
+    }
 }
