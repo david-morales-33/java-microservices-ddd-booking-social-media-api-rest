@@ -37,8 +37,6 @@ public class Test {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        Follow follow = session.get(Follow.class, new FollowId("ac3ac511-4f9c-465c-912d-4ddf80ff59eb"));
-        System.out.println(follow.toPrimitives());
         transaction.commit();
     }
 }
